@@ -1,0 +1,108 @@
+body{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+.row-wrap{
+    max-width : 1160px;
+    margin: 0 auto;
+}
+
+.row-inner, .flex {
+    display : flex;
+    width: 100%;
+}
+
+.column{
+    flex: 0 0 auto;
+    width : 100%;
+}
+
+.header{
+    justify-content: space-between;
+    display: flex;
+    background-color: bisque;
+}
+
+.btn-upload,.btn_upload_to_server{
+    width: 300px;
+    padding: 15px;
+    background: aquamarine;
+    border: 0;
+    border-radius: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.btn-upload:active,.btn_upload_to_server:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.modal-window{
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-window-active{
+    display : block;
+  }
+  
+.modal-content,.modal-header  {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    display:flex;
+    justify-content: space-between;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+.close-button {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: center;
+  }
+
+
+.lbl_upload{
+    display: flex;
+    height: 150px;
+    width: 75%;
+    background-color: #ccccb3;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border-radius : 15px;
+    border : 2px dashed #3d3d29;
+}
+
+.upload-started{
+    background-color: #e0e0d1;
+    border : 2px solid #6a6a48;
+}
+
+.image{
+    width: 300px;
+    margin : 15px;
+}
+
+.image-wrapper{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img{
+    width: 100%;
+}

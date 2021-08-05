@@ -1,0 +1,88 @@
+<%- include('Includes/head.ejs') %>
+</head>
+<body>
+    <div id="container">
+        <header class="app-header">
+            <div class="row row-wrap">
+                <div class="row-inner">
+                    <div class="column">
+                        <div class="column-inner header">
+                            <h3 class="module">Logo</h3>
+                            <h2 class="module">Image Uploader</h2>
+                            <h3 class="module">Exit</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="app-section">
+            <div class="row row-wrap">
+                <div class="row-inner">
+                    <div class="column">
+                        <div class="column-inner" style="background-color: #CCC; overflow:auto;">
+                            <h3 class="module">Hey User,</h3>
+                            <p class="module"> Use our site to store and download your images. </p>
+                            <br />
+                            <h4>Benefits</h4>
+                            <hr />
+                            <ul>
+                                <li>Save your local storage space</li>
+                                <li>blahhhhh!!!!</li>
+                            </ul>
+
+                            <button class="btn-upload">Click Me to Upload photos !!!</button>
+                            <% if(showModal) { %>
+                            <div class="modal-window">
+                                <div class="modal-header" style="padding:0 20px">
+                                    <h2> There you Go - Explore</h2>
+                                    <span class="close-button">&times;</span>
+                                </div>
+                                
+                                <div class="modal-content">
+                                    <div class="tab-container" style="width:100%">
+                                        <div class="tab-header-container flex-container">
+                                            <div class="tab-header active">
+                                                <h1>Gallery</h1>
+                                            </div>
+                                            <div class="tab-header">
+                                                <h1>Upload</h1>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content-container">
+                                            <div class="tab-content active">
+                                                <div class="image-wrapper">
+                                                <% if(images.length > 0) { %>
+                                                    <% images.forEach(function(img){ %>
+                                                        <div class="image">
+                                                            <img src=<%= path + '/' + img %> />
+                                                        </div>
+                                                    <% }); %>
+                                                <% } else { %>
+                                                <h1>No Images to display !!!</h1>
+                                                <% } %>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content">
+                                                <form name="file-upload-form" class="file-upload-form" action="/upload/file" method="post" enctype="multipart/form-data">
+                                                    <label for="filesupld" class="lbl_upload">Click or Drag images to Upload</label>
+                                                    <input type="file" id="filesupld" accept="image/*" name = "files" style="display:none;" multiple>
+                                                    <input type="submit" class="btn_upload_to_server" value ="Upload" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+<script type="text/javascript" src="/js/Tabs/js/main.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+</html>
