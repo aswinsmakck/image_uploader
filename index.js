@@ -23,8 +23,17 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
+function readFilesFromDirPromise(){
+    return new Promise((resolve, reject) => {
+        fs.readdir('public/images', (err, files) => {
+            if(err) reject(err);
+            resolve(files);           
+        });
+    });
+}
+
 app.use(express.static(path.join(__dirname,"public")));
-app.use(express.urlencoded({extended : true}));
+app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 //app.use(multer({storage : localDiskStorage, fileFilter : fileFilter}).array('files'))
 
@@ -36,10 +45,12 @@ app.get('/',(req, res)=>{
 });
 
 app.get('/showModal', (req,res)=>{
-    fs.readdir('public/images', (err, files) => {
-        images = files;
-        res.render("index", {showModal : true, images : files, path : "images"})
-    });
+   
+    readFilesFromDirPromise()
+    .then(files => res.render("index", {showModal : true, images : files, path : "images"}))
+    .catch(err =>{
+        res.render("index", {showModal : false});
+    })    
 });
 
 
