@@ -3,15 +3,45 @@ window.addEventListener('DOMContentLoaded', function(evt){
     const btnToShowModal = document.querySelector(".btn-upload");
     const modalWindow = document.querySelector(".modal-window");
     const closeButton = document.querySelector(".close-button");
+    const fileInputField = document.querySelector("#filesupld");
+
 
     const lblFileUpload = document.querySelector(".lbl_upload"); 
 
     const formToUpload = document.querySelector(".file-upload-form");
 
+    function showThumbnails(){
+        console.log(lblFileUpload);
+        let filesArr = Object.values(fileInputField.files);
+
+        if(filesArr.length == 0) return;
+        lblFileUpload.innerHTML = "";
+        filesArr.forEach(file => {
+            const div = document.createElement('div');
+            const img = document.createElement('img');
+            //div.appendChild(img);
+            div.classList.add('thumbnail');
+            img.classList.add('thumbnail-image');
+
+            const reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = () => {
+                //img.src = reader.result;
+                div.style.backgroundImage = `url(${reader.result})`;
+            }
+            lblFileUpload.appendChild(div);
+        })
+
+    }
+
     btnToShowModal.addEventListener('click', function(evt){
         location.href = "showModal"
         //modalWindow.classList.add('modal-window-active')
     });
+
+    fileInputField.addEventListener('change', showThumbnails)
 
     formToUpload.addEventListener('submit', function(evt){
         try{
@@ -67,12 +97,13 @@ window.addEventListener('DOMContentLoaded', function(evt){
     lblFileUpload.addEventListener('drop',function(evt){
         evt.preventDefault();
         //evt.stopPropagation();
-        lblFileUpload.classList.remove('upload-started');
+        //lblFileUpload.classList.remove('upload-started');
+        console.log(evt)
         const files = evt.dataTransfer.files;
         
-        document.getElementById('filesupld').files = files;
+        fileInputField.files = files
+        
 
-        console.log(lblFileUpload);
-        console.log(files);
+        showThumbnails();
     });
 });
