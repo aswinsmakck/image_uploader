@@ -52,9 +52,9 @@
                                             <div class="tab-content active">
                                                 <div class="image-wrapper">
                                                 <% if(images.length > 0) { %>
-                                                    <% images.forEach(function(img){ %>
+                                                    <% images.forEach(function(img){ let imgSrc = img.substring(img.lastIndexOf('/'+path+'/')) %>
                                                         <div class="image">
-                                                            <img src=<%= path + '/' + img %> />
+                                                            <img src="<%= imgSrc %> "/>
                                                         </div>
                                                     <% }); %>
                                                 <% } else { %>

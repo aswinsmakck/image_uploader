@@ -25,7 +25,7 @@
 .tab-content{
     display: none;
     border: 5px solid black;
-    height:300px;
+    height:500px;
     overflow-x: auto;
 }
 
